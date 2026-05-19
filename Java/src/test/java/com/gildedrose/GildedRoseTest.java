@@ -97,4 +97,19 @@ class GildedRoseTest {
         assertEquals(23, items[0].quality);
     }
 
+    @Test // Пропуск за лаштунки: після концерту quality стає 0
+    void backstagePassesDropToZeroAfterConcert() {
+
+        Item[] items = new Item[] {
+            new Item("Backstage passes to a TAFKAL80ETC concert", 0, 20)
+        };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(-1, items[0].sellIn);
+        assertEquals(0, items[0].quality);
+    }
+
 }
