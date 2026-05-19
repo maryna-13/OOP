@@ -24,7 +24,7 @@ class GildedRose {
             if (!isAgedBrie(items[i]) && !isBackstagePass(items[i])) {
                 if (items[i].quality > 0) {
                     if (!isSulfuras(items[i])) {
-                        decreaseQuality(items[i]);;
+                        decreaseQuality(items[i]);
                     }
                 }
             } else {
@@ -64,7 +64,7 @@ class GildedRose {
                     }
                 } else {
                     if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
+                        increaseQuality(items[i]);
                     }
                 }
             }
