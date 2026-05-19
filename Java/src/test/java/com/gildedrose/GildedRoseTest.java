@@ -82,4 +82,19 @@ class GildedRoseTest {
         assertEquals(22, items[0].quality);
     }
 
+    @Test // Пропуск за лаштунки: якість збільшується на 3, якщо sellIn < 6
+    void backstagePassesIncreaseQualityByThree() {
+
+        Item[] items = new Item[] {
+            new Item("Backstage passes to a TAFKAL80ETC concert", 5, 20)
+        };
+
+        GildedRose app = new GildedRose(items);
+
+        app.updateQuality();
+
+        assertEquals(4, items[0].sellIn);
+        assertEquals(23, items[0].quality);
+    }
+
 }
