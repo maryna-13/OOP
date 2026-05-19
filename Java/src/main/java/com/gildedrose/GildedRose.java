@@ -85,4 +85,9 @@ class GildedRose {
     }
 
 
+    private void decreaseSellIn(Item item) {
+        item.sellIn = item.sellIn - 1;
+    }
+
+
 }
