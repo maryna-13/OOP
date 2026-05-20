@@ -35,21 +35,7 @@ class GildedRose {
             }
 
             if (items[i].sellIn < 0) {
-                if (!isAgedBrie(items[i])) {
-                    if (!isBackstagePass(items[i])) {
-                        if (items[i].quality > 0) {
-                            if (!isSulfuras(items[i])){
-                                decreaseQuality(items[i]);
-                            }
-                        }
-                    } else {
-                        zeroQuality(items[i]);
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        increaseQuality(items[i]);
-                    }
-                }
+                updateExpiredItem(items[i]);
             }
         }
     }
@@ -86,6 +72,25 @@ class GildedRose {
         }
     }
 
+    private void updateExpiredItem(Item item) {
+        if (item.sellIn < 0) {
+            if (!isAgedBrie(item)) {
+                if (!isBackstagePass(item)) {
+                    if (item.quality > 0) {
+                        if (!isSulfuras(item)) {
+                            decreaseQuality(item);
+                        }
+                    }
+                } else {
+                    zeroQuality(item);
+                }
+            } else {
+                if (item.quality < 50) {
+                    increaseQuality(item);
+                }
+            }
+        }
+    }
 
     // зміни якості
     private void increaseQuality(Item item) {
