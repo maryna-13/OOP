@@ -51,26 +51,18 @@ class GildedRose {
     }
 
     private void updateAgedBrie(Item item) {
-        if (qualityCanIncrease(item)) {
-            increaseQuality(item);
-        }
+        increaseQualityIfPossible(item);
     }
 
     private void updateBackstagePass(Item item) {
-        if (qualityCanIncrease(item)) {
-            increaseQuality(item);
-        }
+        increaseQualityIfPossible(item);
 
         if (item.sellIn < 11) {
-            if (qualityCanIncrease(item)) {
-                increaseQuality(item);
-            }
+            increaseQualityIfPossible(item);
         }
 
         if (item.sellIn < 6) {
-            if (qualityCanIncrease(item)) {
-                increaseQuality(item);
-            }
+            increaseQualityIfPossible(item);
         }
     }
 
@@ -112,6 +104,12 @@ class GildedRose {
 
     private boolean qualityCanDecrease(Item item) {
         return item.quality > 0;
+    }
+
+    private void increaseQualityIfPossible(Item item) {
+        if (qualityCanIncrease(item)) {
+            increaseQuality(item);
+        }
     }
 
     // зміни якості
