@@ -23,21 +23,25 @@ class GildedRose {
         for (int i = 0; i < items.length; i++) {
             if (!isAgedBrie(items[i]) && !isBackstagePass(items[i])) {
                 updateRegularItem(items[i]);
+            }
+            else if (isAgedBrie(items[i])) {
+                updateAgedBrie(items[i]);
             } else {
-                if (items[i].quality < 50) {
-                    increaseQuality(items[i]);
+                if (isBackstagePass(items[i])) {
 
-                    if (isBackstagePass(items[i])) {
-                        if (items[i].sellIn < 11) {
-                            if (items[i].quality < 50) {
-                                increaseQuality(items[i]);
-                            }
+                    if (items[i].quality < 50) {
+                        increaseQuality(items[i]);
+                    }
+
+                    if (items[i].sellIn < 11) {
+                        if (items[i].quality < 50) {
+                            increaseQuality(items[i]);
                         }
+                    }
 
-                        if (items[i].sellIn < 6) {
-                            if (items[i].quality < 50) {
-                                increaseQuality(items[i]);
-                            }
+                    if (items[i].sellIn < 6) {
+                        if (items[i].quality < 50) {
+                            increaseQuality(items[i]);
                         }
                     }
                 }
@@ -73,7 +77,15 @@ class GildedRose {
                 decreaseQuality(item);
             }
         }
-    } 
+    }
+
+    private void updateAgedBrie(Item item) {
+        if (item.quality < 50) {
+            increaseQuality(item);
+        }
+    }
+
+
     // зміни якості
     private void increaseQuality(Item item) {
         item.quality = item.quality + 1;
