@@ -21,22 +21,25 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!isAgedBrie(items[i]) && !isBackstagePass(items[i])) {
-                updateRegularItem(items[i]);
-            }
-            else if (isAgedBrie(items[i])) {
-                updateAgedBrie(items[i]);
-            } else {
-                updateBackstagePass(items[i]);
+            Item item = items[i];
+
+            if (isAgedBrie(item)) {
+                updateAgedBrie(item);
             }
 
-            if (!isSulfuras(items[i])) {
-                decreaseSellIn(items[i]);
+            if (isBackstagePass(item)) {
+                updateBackstagePass(item);
             }
 
-            if (items[i].sellIn < 0) {
-                updateExpiredItem(items[i]);
+            if (!isAgedBrie(item) && !isBackstagePass(item)) {
+                updateRegularItem(item);
             }
+
+            if (!isSulfuras(item)) {
+                decreaseSellIn(item);
+            }
+
+            updateExpiredItem(item);
         }
     }
 
