@@ -30,7 +30,7 @@ class GildedRose {
                 updateBackstagePass(item);
             }
 
-            if (!isAgedBrie(item) && !isBackstagePass(item)) {
+            if (isRegularItem(item)) {
                 updateRegularItem(item);
             }
 
@@ -93,6 +93,14 @@ class GildedRose {
             }
         }
     }
+
+
+    private boolean isRegularItem(Item item) {
+        return !isAgedBrie(item)
+            && !isBackstagePass(item)
+            && !isSulfuras(item);
+    }
+
 
     // зміни якості
     private void increaseQuality(Item item) {
