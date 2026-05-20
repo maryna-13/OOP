@@ -78,9 +78,7 @@ class GildedRose {
         }
 
         if (isAgedBrie(item)) {
-            if (qualityCanIncrease(item)) {
-                increaseQuality(item);
-            }
+            increaseQualityIfPossible(item);
             return;
         }
 
