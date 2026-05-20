@@ -43,7 +43,7 @@ class GildedRose {
     }
 
     private void updateRegularItem(Item item) {
-        if (item.quality > 0) {
+        if (qualityCanDecrease(item)) {
             if (!isSulfuras(item)) {
                 decreaseQuality(item);
             }
@@ -51,24 +51,24 @@ class GildedRose {
     }
 
     private void updateAgedBrie(Item item) {
-        if (item.quality < 50) {
+        if (qualityCanIncrease(item)) {
             increaseQuality(item);
         }
     }
 
     private void updateBackstagePass(Item item) {
-        if (item.quality < 50) {
+        if (qualityCanIncrease(item)) {
             increaseQuality(item);
         }
 
         if (item.sellIn < 11) {
-            if (item.quality < 50) {
+            if (qualityCanIncrease(item)) {
                 increaseQuality(item);
             }
         }
 
         if (item.sellIn < 6) {
-            if (item.quality < 50) {
+            if (qualityCanIncrease(item)) {
                 increaseQuality(item);
             }
         }
@@ -78,7 +78,7 @@ class GildedRose {
         if (item.sellIn < 0) {
             if (!isAgedBrie(item)) {
                 if (!isBackstagePass(item)) {
-                    if (item.quality > 0) {
+                    if (qualityCanDecrease(item)) {
                         if (!isSulfuras(item)) {
                             decreaseQuality(item);
                         }
@@ -87,7 +87,7 @@ class GildedRose {
                     zeroQuality(item);
                 }
             } else {
-                if (item.quality < 50) {
+                if (qualityCanIncrease(item)) {
                     increaseQuality(item);
                 }
             }
@@ -101,6 +101,15 @@ class GildedRose {
             && !isSulfuras(item);
     }
 
+    // перевірка максимальної якості
+    private boolean qualityCanIncrease(Item item) {
+        return item.quality < 50;
+    }
+
+
+    private boolean qualityCanDecrease(Item item) {
+        return item.quality > 0;
+    }
 
     // зміни якості
     private void increaseQuality(Item item) {
