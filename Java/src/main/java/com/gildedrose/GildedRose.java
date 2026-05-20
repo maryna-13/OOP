@@ -43,11 +43,11 @@ class GildedRose {
     }
 
     private void updateRegularItem(Item item) {
-        if (qualityCanDecrease(item)) {
-            if (!isSulfuras(item)) {
-                decreaseQuality(item);
-            }
+        if (!qualityCanDecrease(item)) {
+            return;
         }
+
+        decreaseQuality(item);
     }
 
     private void updateAgedBrie(Item item) {
