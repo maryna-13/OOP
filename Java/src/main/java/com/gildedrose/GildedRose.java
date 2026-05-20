@@ -75,22 +75,25 @@ class GildedRose {
     }
 
     private void updateExpiredItem(Item item) {
-        if (item.sellIn < 0) {
-            if (!isAgedBrie(item)) {
-                if (!isBackstagePass(item)) {
-                    if (qualityCanDecrease(item)) {
-                        if (!isSulfuras(item)) {
-                            decreaseQuality(item);
-                        }
-                    }
-                } else {
-                    zeroQuality(item);
-                }
-            } else {
-                if (qualityCanIncrease(item)) {
-                    increaseQuality(item);
-                }
+
+        if (item.sellIn >= 0) {
+            return;
+        }
+
+        if (isBackstagePass(item)) {
+            zeroQuality(item);
+            return;
+        }
+
+        if (isAgedBrie(item)) {
+            if (qualityCanIncrease(item)) {
+                increaseQuality(item);
             }
+            return;
+        }
+
+        if (qualityCanDecrease(item) && !isSulfuras(item)) {
+            decreaseQuality(item);
         }
     }
 
